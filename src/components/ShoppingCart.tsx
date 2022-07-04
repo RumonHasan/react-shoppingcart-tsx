@@ -1,6 +1,7 @@
 import React from 'react'
 import { Offcanvas, Stack } from 'react-bootstrap';
 import { useShoppingCart } from '../context/ShoppingCartContext';
+import { formatCurrency } from '../utilities/currencyFormatter';
 import CartItem from './CartItem';
 
 type ShoppingCartProps = {
@@ -21,6 +22,9 @@ const ShoppingCart = ({isOpen}:ShoppingCartProps) => {
                 {cartItems.map((item)=>(
                     <CartItem key={item.id} {...item}/>
                 ))}
+                <div className='ms-auto fw-fold fs-5'>
+                   
+                </div>
             </Stack>
         </Offcanvas.Body>
     </Offcanvas>

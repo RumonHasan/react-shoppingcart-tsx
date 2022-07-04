@@ -1,8 +1,11 @@
 import React from 'react'
-import { Stack } from 'react-bootstrap';
+import { Button, Stack } from 'react-bootstrap';
 import { useShoppingCart } from '../context/ShoppingCartContext';
 import storeItems from '../data/items.json';
+import { formatCurrency } from '../utilities/currencyFormatter';
+import {FaTimes} from 'react-icons/fa';
 
+// cart item props
 type CartItemProps = {
     id:number,
     quantity:number
@@ -21,6 +24,13 @@ const CartItem = ({id, quantity}:CartItemProps) => {
             <div>
                 {item.name} {quantity > 1 && <span className='text-muted' style={{fontSize:'0.65rem'}}>x{quantity}</span>}
             </div>
+        </div>
+        <div className='text-muted' style={{fontSize:'0.75rem'}}>
+            {formatCurrency(item.price)}
+        </div>
+        <div>
+            {formatCurrency(item.price * quantity)}
+            <Button variant='outline-danger' size='sm' onClick={()=>removeFromCart(id)}><FaTimes/></Button>
         </div>
     </Stack>
   )
